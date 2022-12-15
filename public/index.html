@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <script>
+    (function (para) {
+      var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script', x = null, y = null;
+      if (typeof (w['sensorsDataAnalytic201505']) !== 'undefined') {
+        return false;
+      }
+      w['sensorsDataAnalytic201505'] = n;
+      w[n] = w[n] || function (a) { return function () { (w[n]._q = w[n]._q || []).push([a, arguments]); } };
+      var ifs = ['track', 'quick', 'register', 'registerPage', 'registerOnce', 'clearAllRegister', 'trackSignup', 'trackAbtest', 'setProfile', 'setOnceProfile', 'appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify', 'login', 'logout', 'trackLink', 'deleteItem', 'setItem', 'trackCustom', 'initError'];
+      for (var i = 0; i < ifs.length; i++) {
+        w[n][ifs[i]] = w[n].call(null, ifs[i]);
+      }
+      if (!w[n]._t) {
+        x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+        x.async = 1;
+        x.src = p;
+        x.setAttribute('charset', 'UTF-8');
+        w[n].para = para;
+        y.parentNode.insertBefore(x, y);
+      }
+    })({
+      name:"sensors",
+      sdk_url: './H5_FireFly_JS_SDK.min.js',
+      server_url: 'https://firefly.abchina.com.cn/firefly-collection/Collect/MobileData',
+      is_track_single_page: true, // 单页面配置，默认开启，若页面中有锚点设计，需要将该配置删除，否则触发锚点会多触发 $pageview 事件
+      use_client_time: true,
+      app_js_bridge: true, //配置H5与APP打通，如果H5工程集成在APP中，推荐开启
+      show_log: true,
+      firefly_system_number: "shenzhen_chuxingyouli_chengchema",
+      firefly_apc_type: 1,
+      firefly_model_name: "深圳_出行有礼",
+    });
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+
+</body>
+
+</html>
